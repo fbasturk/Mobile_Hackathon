@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite data-provider-thread-count="1" name="HACKATHON TASK" parallel="tests">
+
+    <test name="AirBnb Test Set">
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Android Emulator"/>
+        <parameter name="udid" value="192.168.221.104:5555"/> <!-- adb devices -->
+        <parameter name="app" value="Airbnb_v21.44.2.xapk"/> <!-- APP path -->
+        <classes>
+            <class name="com.gmteam.AirBnb"/>
+        </classes>
+    </test>
+
+</suite>
+
