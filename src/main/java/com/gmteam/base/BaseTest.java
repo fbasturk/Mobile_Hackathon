@@ -14,9 +14,9 @@ public class BaseTest {
     private static final Logger baseTestLogger = LogManager.getLogger(BaseTest.class);
 
 
-    @Parameters({"platformName", "deviceName", "udid", "app"})
+    @Parameters({"platformName", "deviceName", "udid", "appPackage", "appActivity"})
     @BeforeClass(alwaysRun = true)
-    public void beforeClass(String platformName, String deviceName, String udid, String app) {
+    public void beforeClass(String platformName, String deviceName, String udid, String appPackage, String appActivity) {
         baseTestLogger.info("BeforeClass başlatıldı. Cihaz Ayarları yapılıyor.");
 
         try {
@@ -25,7 +25,8 @@ public class BaseTest {
             properties.setProperty("platformName", platformName);
             properties.setProperty("deviceName", deviceName);
             properties.setProperty("udid", udid);
-            properties.setProperty("app", app);
+            properties.setProperty("appPackage", appPackage);
+            properties.setProperty("appActivity", appActivity);
 
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
 

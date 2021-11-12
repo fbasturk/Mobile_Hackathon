@@ -148,22 +148,30 @@ public class BaseStepMethod {
         }
     }
 
-    public void testSeekBarToEnd(By locator) {
-        //Locating seekbar using resource id
+    protected void click_ScreenPoint(int x, int y) {
+        new TouchAction(DriverThread.getDriver())
+                .press(PointOption.point(x, y)).release().perform();
+    }
+
+    public void testSeekBarToEnd(By locator, String direction, int padding) {
         MobileElement seek_bar_element = waitVisibleByLocator(locator);
-        // get start co-ordinate of seekbar
-        int start = seek_bar_element.getLocation().getX();
-        //Get width of seekbar
-        int padding = 250;// Couldn't scroll to the last part because of padding.
-        int end = seek_bar_element.getSize().getWidth() + padding;
-        //get location of seekbar vertically
-        int y = seek_bar_element.getLocation().getY();
+        int startX = seek_bar_element.getLocation().getX();
+        int startY = seek_bar_element.getLocation().getY();
+
+        int endX = 0, endY = 0;
+        if (direction.equalsIgnoreCase("down")) {
+            endX = startX + padding;
+            endY = startY;
+        } else if (direction.equalsIgnoreCase("up")) {
+            endX = startX;
+            endY = startY - padding;
+        }
 
         // Select till which position you want to scroll the seekbar
         TouchAction action = new TouchAction(DriverThread.getDriver());
 
         //Move it will the end
-        action.longPress(PointOption.point(start, y)).moveTo(PointOption.point(end, y)).release().perform();
+        action.longPress(PointOption.point(startX, startY)).moveTo(PointOption.point(endX, endY)).release().perform();
     }
 
 

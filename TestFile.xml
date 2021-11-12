@@ -6,8 +6,9 @@
     <test name="AirBnb Test Set">
         <parameter name="platformName" value="Android"/>
         <parameter name="deviceName" value="Android Emulator"/>
-        <parameter name="udid" value="192.168.221.104:5555"/> <!-- adb devices -->
-        <parameter name="app" value="Airbnb_v21.44.2.xapk"/> <!-- APP path -->
+        <parameter name="udid" value="192.168.221.104:5555"/>
+        <parameter name="appPackage" value="com.airbnb.android"/>
+        <parameter name="appActivity" value="com.airbnb.android.activities.MainActivity"/>
         <classes>
             <class name="com.gmteam.AirBnb"/>
         </classes>

@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -30,10 +31,11 @@ public class PlatformType {
         capabilities.setCapability(MobileCapabilityType.UDID, properties.getProperty("udid")); // adb devices
         capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
-        capabilities.setCapability(MobileCapabilityType.APP, new File("APKFiles/" + properties.getProperty("app")).getAbsolutePath());
 
         if (platformName.equals(PlatformName.ANDROID)) {
             capabilities.setCapability("automationName", "UiAutomator2");
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,properties.getProperty("appPackage"));
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,properties.getProperty("appActivity"));
             driver = new AndroidDriver<>(url, capabilities);
         } else if (platformName.equals(PlatformName.IOS)) {
             capabilities.setCapability("automationName", "XCUITest");
